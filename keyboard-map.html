@@ -1,0 +1,124 @@
+<title>German Keyboard, English Layout</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one wide projection sheet, two full-width keyboards stacked, then a lookup grid. */
+:root{
+  --bg:#f1f4f3; --panel:#e4e9e7; --key:#ffffff; --edge:#b9c4c0; --ink:#14201c; --muted:#5d6b66;
+  --accent:#0a6a55; --hit:#cfeee1; --hit-edge:#0a6a55;
+  --display:"Familjen Grotesk","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1513; --panel:#182220; --key:#222e2b; --edge:#3c4b46; --ink:#ecf3f0; --muted:#9aaaa4;
+  --accent:#62d6b0; --hit:#14453a; --hit-edge:#62d6b0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1513; --panel:#182220; --key:#222e2b; --edge:#3c4b46; --ink:#ecf3f0; --muted:#9aaaa4;
+  --accent:#62d6b0; --hit:#14453a; --hit-edge:#62d6b0; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-size:16px;line-height:1.45}
+.wrap{max-width:1500px;margin:0 auto;padding-inline:clamp(16px,3vw,40px);padding-block:28px 48px;display:flex;flex-direction:column;gap:36px}
+h1{font-size:clamp(26px,3.4vw,46px);line-height:1.05;margin:0;text-wrap:balance}
+h2{font-size:clamp(20px,2.2vw,30px);margin:0;text-wrap:balance}
+p{margin:0;color:var(--muted);max-width:65ch;font-size:clamp(15px,1.25vw,19px)}
+section{display:flex;flex-direction:column;gap:14px;min-width:0}
+.scroll{overflow-x:auto}
+.kb{min-width:780px;background:var(--panel);border-radius:14px;padding:clamp(8px,1vw,16px);display:flex;flex-direction:column;gap:clamp(4px,.5vw,8px)}
+.row{display:flex;gap:clamp(4px,.5vw,8px)}
+.key{flex-basis:0;min-width:0;height:clamp(54px,5.8vw,92px);background:var(--key);border:1.5px solid var(--edge);border-radius:8px;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:clamp(5px,.6vw,10px);font-family:var(--mono)}
+.key.mod{align-items:center;padding:0;color:var(--muted);font-family:var(--display);font-size:clamp(10px,1vw,15px)}
+.key.hit{background:var(--hit);border-color:var(--hit-edge);border-width:2.5px}
+.pr{position:absolute;top:clamp(3px,.4vw,7px);left:clamp(4px,.5vw,9px);font-size:clamp(10px,1vw,16px);color:var(--muted);white-space:nowrap}
+.out{display:flex;align-items:baseline;gap:clamp(5px,.7vw,12px)}
+.out b{font-size:clamp(17px,2.1vw,34px);font-weight:700;line-height:1}
+.out i{font-style:normal;font-size:clamp(13px,1.5vw,24px);color:var(--accent);font-weight:700;line-height:1}
+.legend{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:clamp(14px,1.15vw,18px);color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:8px}
+.sw{width:22px;height:22px;border-radius:5px;border:2.5px solid var(--hit-edge);background:var(--hit);flex:none}
+.legend b{color:var(--ink);font-family:var(--mono)} .legend em{font-style:normal;color:var(--accent);font-family:var(--mono);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.item{display:flex;align-items:center;gap:14px;background:var(--panel);border-radius:10px;padding:10px 14px;min-width:0}
+.ch{font-family:var(--mono);font-weight:700;font-size:clamp(26px,2.4vw,38px);width:1.6em;text-align:center;flex:none}
+.item div{min-width:0}
+.nm{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pk{font-family:var(--mono);font-weight:700;font-size:clamp(17px,1.5vw,23px);color:var(--accent)}
+.note{border-left:4px solid var(--accent);padding-left:14px}
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <h1>German keyboard, English layout</h1>
+    <p>When the test software switches to English (US), the keys no longer type what is printed on them. Use this sheet to find the right key.</p>
+  </header>
+
+  <section>
+    <h2>1 · The English (US) keyboard</h2>
+    <div class="legend"><span><b>2</b> key alone</span><span><em>@</em> with Shift</span></div>
+    <div class="scroll"><div class="kb" id="us"></div></div>
+  </section>
+
+  <section>
+    <h2>2 · Your German keyboard in English mode</h2>
+    <div class="legend">
+      <span>small grey = printed on your key</span>
+      <span><b>'</b> big = what it types</span>
+      <span><em>"</em> = with Shift</span>
+      <span><i class="sw"></i> types something different from the print</span>
+    </div>
+    <div class="scroll"><div class="kb" id="de"></div></div>
+    <p class="note">AltGr combinations do not work in English mode: no @ on Q, no € on E, no { [ ] } \ on 7 8 9 0 ß. Ä, Ö, Ü and ß cannot be typed at all.</p>
+  </section>
+
+  <section>
+    <h2>3 · Quick lookup: I need this character, which German key do I press?</h2>
+    <div class="grid" id="look"></div>
+  </section>
+</div>
+
+<script>
+const M=(l,w)=>({l,w});
+// [printedBase, printedShift, usBase, usShift]
+const DE=[
+ [["^","°","`","~"],["1","!","1","!"],["2",'"',"2","@"],["3","§","3","#"],["4","$","4","$"],["5","%","5","%"],["6","&","6","^"],["7","/","7","&"],["8","(","8","*"],["9",")","9","("],["0","=","0",")"],["ß","?","-","_"],["´","`","=","+"],M("⌫",2)],
+ [M("Tab",1.5),..."QWERT".split("").map(c=>[c,"",c,""]),["Z","","Y",""],..."UIOP".split("").map(c=>[c,"",c,""]),["Ü","","[","{"],["+","*","]","}"],M("Enter",1.5)],
+ [M("Caps",1.75),..."ASDFGHJKL".split("").map(c=>[c,"",c,""]),["Ö","",";",":"],["Ä","","'",'"'],["#","'","\\","|"],M("↵",1.25)],
+ [M("Shift",1.25),["<",">","\\","|"],["Y","","Z",""],..."XCVBNM".split("").map(c=>[c,"",c,""]),[",",";",",","<"],[".",":",".",">"],["-","_","/","?"],M("Shift",2.75)],
+ [M("Strg",1.25),M("Win",1.25),M("Alt",1.25),M("",6.25),M("AltGr",1.25),M("Win",1.25),M("Menu",1.25),M("Strg",1.25)]
+];
+const U=s=>s.map(p=>["","",p[0],p[1]||""]);
+const US=[
+ [...U([["`","~"],["1","!"],["2","@"],["3","#"],["4","$"],["5","%"],["6","^"],["7","&"],["8","*"],["9","("],["0",")"],["-","_"],["=","+"]]),M("Backspace",2)],
+ [M("Tab",1.5),...U("QWERTYUIOP".split("").map(c=>[c])),...U([["[","{"],["]","}"],["\\","|"]]).map(k=>k),],
+ [M("Caps",1.75),...U("ASDFGHJKL".split("").map(c=>[c])),...U([[";",":"],["'",'"']]),M("Enter",2.25)],
+ [M("Shift",2.25),...U("ZXCVBNM".split("").map(c=>[c])),...U([[",","<"],[".",">"],["/","?"]]),M("Shift",2.75)],
+ [M("Ctrl",1.25),M("Win",1.25),M("Alt",1.25),M("",6.25),M("Alt",1.25),M("Win",1.25),M("Menu",1.25),M("Ctrl",1.25)]
+];
+US[1][US[1].length-1].w=1.5;
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function draw(id,rows,mapped){
+  const kb=document.getElementById(id);
+  rows.forEach(r=>{const row=el("div","row");
+    r.forEach(k=>{
+      const isMod=!Array.isArray(k), w=isMod?k.w:(k.w||1);
+      const key=el("div","key"+(isMod?" mod":""),isMod?k.l:null);
+      key.style.flexGrow=w;
+      if(!isMod){
+        const [pb,ps,ub,us]=k;
+        if(mapped){
+          key.append(el("span","pr",ps?pb+" "+ps:pb));
+          if(pb!==ub||ps!==us)key.classList.add("hit");
+        }
+        const o=el("span","out");o.append(el("b","",ub));if(us)o.append(el("i","",us));key.append(o);
+      }
+      row.append(key)});
+    kb.append(row)});
+}
+draw("us",US,false);draw("de",DE,true);
+const L=[["'","apostrophe","Ä"],['"',"quotation marks","Shift + Ä"],["?","question mark","Shift + − (minus key)"],["/","slash","− (minus key)"],
+["-","hyphen","ß"],["_","underscore","Shift + ß"],[";","semicolon","Ö"],[":","colon","Shift + Ö"],
+["y","letter Y","Z"],["z","letter Z","Y"],["(","open bracket","Shift + 9"],[")","close bracket","Shift + 0"],
+["@","at sign","Shift + 2"],["&","ampersand","Shift + 7"],["*","asterisk","Shift + 8"],["#","hash","Shift + 3"],
+["=","equals","´ (accent key)"],["+","plus","Shift + ´"],["<","less than","Shift + ,"],[">","greater than","Shift + ."],
+["[","square bracket","Ü"],["]","square bracket","+ (plus key)"],["\\","backslash","# (hash key)"],["! $ %","unchanged","Shift + 1 / 4 / 5"]];
+const g=document.getElementById("look");
+L.forEach(([c,n,k])=>{const it=el("div","item");const ch=el("span","ch",c);if(c.length>1){ch.style.width="auto";ch.style.fontSize="22px"}
+  const d=el("div");d.append(el("div","nm",n),el("div","pk",k));it.append(ch,d);g.append(it)});
+</script>
